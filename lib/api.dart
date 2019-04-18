@@ -36,7 +36,7 @@ class Api {
 
       var decoded = json.decode(response.body);
 
-      _nextToken = decoded['nextPageToken'];
+      _nextToken = decoded["nextPageToken"];
 
       List<Video> videos = decoded["items"].map<Video>(
         (map){

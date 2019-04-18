@@ -60,12 +60,14 @@ class VideoTile extends StatelessWidget {
                     return IconButton(
                       icon: Icon(
                         snapshot.data.containsKey(video.id) 
-                        ? Icons.star_border
-                        : Icons.star
+                        ? Icons.star
+                        : Icons.star_border
                       ),
                       color: Colors.white,
                       iconSize: 30,
-                      onPressed: (){},
+                      onPressed: (){
+                        bloc.toggleFavorite(video);
+                      },
                     );
                   }else{
                     return Center(
