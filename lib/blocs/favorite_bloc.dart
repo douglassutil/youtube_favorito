@@ -30,6 +30,16 @@ class FavoriteBloc implements BlocBase {
     else _favorites[video.id] = video;
 
     _favController.sink.add(_favorites);
+
+    _savFav();
+  }
+
+  void _savFav(){
+    SharedPreferences.getInstance().then(
+      (prefs){
+        prefs.setString("favorites", json.encode(_favorites));
+      }
+    );
   }
 
   @override
