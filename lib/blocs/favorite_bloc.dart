@@ -11,8 +11,10 @@ class FavoriteBloc implements BlocBase {
 
   void toggleFavorite(Video video){
     if (_favorites.containsKey(video.id)) _favorites.remove(video.id);
-  }
+    else _favorites[video.id] = video;
 
+    _favController.sink.add(_favorites);
+  }
 
   @override
   void dispose() {
