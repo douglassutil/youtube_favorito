@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:youtube_favorito/models/video.dart';
 
-const API_KEY = "AIzaSyDbyMwpWNrFBlPOlxmLaXD-bzUpgts78hA";
+//const API_KEY = "AIzaSyDbyMwpWNrFBlPOlxmLaXD-bzUpgts78hA";
+// const API_KEY = "AIzaSyD-u2U2_DQQpyN25X8FIVxVJVizVUxKL0E";
+const API_KEY = "AIzaSyCPO2ubKOMy3jGsRXDMlLwmNU5fJT1YMLk";
 
 class Api {
 
@@ -31,11 +33,12 @@ class Api {
   }
 
   List<Video> decode (http.Response response){
+    print("Situação: ${response.statusCode}");
     
     if (response.statusCode == 200) {
 
       var decoded = json.decode(response.body);
-
+      
       _nextToken = decoded["nextPageToken"];
 
       List<Video> videos = decoded["items"].map<Video>(
@@ -51,7 +54,5 @@ class Api {
     }
 
   }
-
-
 
 }

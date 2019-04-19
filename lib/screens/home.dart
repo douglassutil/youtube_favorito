@@ -5,6 +5,7 @@ import 'package:youtube_favorito/blocs/favorite_bloc.dart';
 import 'package:youtube_favorito/blocs/videos_bloc.dart';
 import 'package:youtube_favorito/delegates/data_search.dart';
 import 'package:youtube_favorito/models/video.dart';
+import 'package:youtube_favorito/screens/favorites.dart';
 import 'package:youtube_favorito/tiles/video_tile.dart';
 
 class Home extends StatelessWidget {
@@ -39,7 +40,9 @@ class Home extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.star),
-            onPressed: (){},
+            onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Favorites()));
+            },
           ), 
           IconButton(
             icon: Icon(Icons.search),
@@ -48,7 +51,6 @@ class Home extends StatelessWidget {
               if( result != null ){
                 bloc.inSearch.add(result);
               }
-              print(result);
             },
           ),          
         ],
@@ -62,6 +64,8 @@ class Home extends StatelessWidget {
             return ListView.builder(
               itemCount: snapshot.data.length + 1,
               itemBuilder: (context, index){
+                print("Index: ${index}");
+                print("SnapshotSize: ${snapshot.data.length}");
                 if (index < snapshot.data.length) {
                   return VideoTile(snapshot.data[index]);
                 }else if( index > 1 ){
